@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حسابي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.panel{max-width:560px;margin:24px auto;padding:0 16px}
+.tabs{display:flex;gap:8px;margin-block-end:14px}
+.tabs button{flex:1;min-height:44px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--brand);color:var(--brand-ink);border-color:transparent}
+form.f{display:grid;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-block-end:16px}
+.f label{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.f input,.f select,.f textarea{min-height:46px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);width:100%}
+.f textarea{min-height:100px}
+.f .go{min-height:48px;border:0;border-radius:var(--r-sm);background:var(--brand);color:var(--brand-ink);font-weight:700}
+.f .go[disabled]{opacity:.6}
+.f h3{font-size:18px}
+.err{color:var(--danger);font-size:14px;min-height:1.2em}
+.who{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-block-end:14px}
+.out{border:1px solid var(--line);background:transparent;border-radius:var(--r-sm);min-height:40px;padding:0 14px}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"></span><span data-t="appName"></span></a>
+  <nav class="tools"><button id="langBtn" type="button"></button><button id="themeBtn" type="button" aria-label="theme"></button></nav>
+</header>
+<main class="panel">
+  <section id="guest" hidden>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabLogin" aria-selected="true" data-t="login"></button>
+      <button type="button" role="tab" id="tabReg" aria-selected="false" data-t="register"></button>
+    </div>
+    <form id="loginForm" class="f" novalidate>
+      <label><span data-t="email"></span><input name="email" type="email" autocomplete="email" required></label>
+      <label><span data-t="password"></span><input name="password" type="password" autocomplete="current-password" required></label>
+      <div class="err" data-err></div>
+      <button class="go" type="submit" data-t="login"></button>
+    </form>
+    <form id="regForm" class="f" novalidate hidden>
+      <label><span data-t="accType"></span>
+        <select name="role"><option value="customer" data-t="customer"></option><option value="provider" data-t="provider"></option></select></label>
+      <label><span data-t="name"></span><input name="name" autocomplete="name" required></label>
+      <label data-only="provider" hidden><span data-t="business"></span><input name="business_name"></label>
+      <label><span data-t="email"></span><input name="email" type="email" autocomplete="email" required></label>
+      <label><span data-t="phone"></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>
+      <label><span data-t="password"></span><input name="password" type="password" autocomplete="new-password" required><small data-t="pwHint"></small></label>
+      <div class="err" data-err></div>
+      <button class="go" type="submit" data-t="register"></button>
+    </form>
+  </section>
+
+  <section id="member" hidden>
+    <div class="who"><strong id="hello"></strong><button id="logoutBtn" class="out" type="button" data-t="logout"></button></div>
+    <form id="meForm" class="f" novalidate>
+      <h3 data-t="myData"></h3>
+      <label><span data-t="name"></span><input name="name" required></label>
+      <label><span data-t="phone"></span><input name="phone" type="tel" inputmode="tel"></label>
+      <div class="err" data-err></div>
+      <button class="go" type="submit" data-t="save"></button>
+    </form>
+    <form id="provForm" class="f" novalidate hidden>
+      <h3 data-t="myBusiness"></h3>
+      <label><span data-t="business"></span><input name="business_name" required></label>
+      <label><span data-t="desc"></span><textarea name="description" maxlength="2000"></textarea></label>
+      <label><span data-t="whatsapp"></span><input name="whatsapp" type="tel" inputmode="tel"></label>
+      <label><span data-t="city"></span><select name="city"></select></label>
+      <label><span data-t="area"></span><input name="area"></label>
+      <label><span data-t="hours"></span><input name="hours" placeholder="09:00 - 21:00"></label>
+      <label><span data-t="lat"></span><input name="lat" inputmode="decimal"></label>
+      <label><span data-t="lng"></span><input name="lng" inputmode="decimal"></label>
+      <button id="locBtn" class="out" type="button" data-t="useLocation"></button>
+      <label>Facebook<input name="facebook" type="url" placeholder="https://"></label>
+      <label>Instagram<input name="instagram" type="url" placeholder="https://"></label>
+      <label>X<input name="x" type="url" placeholder="https://"></label>
+      <label>TikTok<input name="tiktok" type="url" placeholder="https://"></label>
+      <div class="err" data-err></div>
+      <button class="go" type="submit" data-t="save"></button>
+    </form>
+    <form id="pwForm" class="f" novalidate>
+      <h3 data-t="changePw"></h3>
+      <label><span data-t="oldPw"></span><input name="oldPassword" type="password" autocomplete="current-password" required></label>
+      <label><span data-t="newPw"></span><input name="newPassword" type="password" autocomplete="new-password" required></label>
+      <div class="err" data-err></div>
+      <button class="go" type="submit" data-t="changePw"></button>
+    </form>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script>
+<script src="account.js"></script>
+</body>
+</html>

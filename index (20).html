@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل الخدمات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#" data-home><span class="mark" aria-hidden="true"></span><span data-t="appName"></span></a>
+  <nav class="tools">
+    <a href="account.html" data-t="account"></a>
+    <button id="langBtn" type="button"></button>
+    <button id="themeBtn" type="button" aria-label="theme"></button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1 data-t="heroTitle"></h1>
+    <form id="searchForm" class="search" role="search">
+      <input id="q" type="search" data-p="searchPh" autocomplete="off">
+      <select id="city" aria-label="city"></select>
+      <button type="submit" data-t="search"></button>
+    </form>
+  </section>
+
+  <section id="results" class="wrap" hidden>
+    <div class="bar">
+      <h2 data-t="results"></h2>
+      <select id="sort" aria-label="sort"></select>
+      <button id="clearBtn" type="button" data-t="clear"></button>
+    </div>
+    <div class="filters">
+      <input id="minP" type="number" min="0" data-p="minPrice">
+      <input id="maxP" type="number" min="0" data-p="maxPrice">
+      <select id="minR" aria-label="rating"></select>
+      <button id="nearBtn" type="button" data-t="near"></button>
+    </div>
+    <div id="resList" class="grid"></div>
+  </section>
+
+  <div id="homeBlocks">
+    <section class="wrap"><h2 data-t="categories"></h2><div id="cats" class="cats"></div></section>
+    <section class="wrap" data-block="featured"><h2 data-t="featured"></h2><div class="grid"></div></section>
+    <section class="wrap" data-block="latest"><h2 data-t="latest"></h2><div class="grid"></div></section>
+    <section class="wrap" data-block="views"><h2 data-t="mostViewed"></h2><div class="grid"></div></section>
+    <section class="wrap" data-block="rating"><h2 data-t="topRated"></h2><div class="grid"></div></section>
+    <section class="wrap" data-block="offers"><h2 data-t="offers"></h2><div class="grid"></div></section>
+    <section class="wrap" data-block="nearby"><h2 data-t="nearby"></h2><div class="grid"></div></section>
+
+    <section class="wrap steps">
+      <h2 data-t="howTitle"></h2>
+      <ol><li data-t="how1"></li><li data-t="how2"></li><li data-t="how3"></li><li data-t="how4"></li></ol>
+    </section>
+    <section class="wrap" id="contact"><h2 data-t="contact"></h2><p id="contactInfo"></p></section>
+  </div>
+
+  <section id="detail" class="wrap" hidden></section>
+</main>
+
+<footer class="foot">
+  <span id="year"></span>
+  <a href="privacy.html" data-t="privacy"></a>
+  <a href="terms.html" data-t="terms"></a>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
